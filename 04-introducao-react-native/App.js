@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 
 export default function App() {
   const [temaBranco, setTemaBranco] = useState(false);
@@ -22,46 +29,43 @@ export default function App() {
     : styles.botao;
 
   return (
-    <View style={containerEstilo}>
-      <Image
-        source={{
-          uri: "https://static1.cbrimages.com/wordpress/wp-content/uploads/2024/06/what-no-face-in-spirited-away-represents-explained-feature.jpg",
-        }}
-        style={{
-          height: 400,
-          width: 400,
-        }}
-      />
+    <ScrollView>
+      <View style={containerEstilo}>
+        <TouchableOpacity style={botaoEstilo} onPress={toggleTema}>
+          <Text style={textoEstilo}>Alternar Tema</Text>
+        </TouchableOpacity>
 
-      <Text>{"\n"}</Text>
-      <Text style={textoEstilo}>
-        Indicação básica de um projeto em Native!{"\n"}
-      </Text>
-      <Text style={textoEstilo}>
-        Indicação básica de um projeto em Native!{"\n"}
-      </Text>
-      <Text style={textoEstilo}>
-        Indicação básica de um projeto em Native!{"\n"}
-      </Text>
-      <Text style={textoEstilo}>
-        Indicação básica de um projeto em Native!{"\n"}
-      </Text>
-      <Text style={textoEstilo}>
-        Indicação básica de um projeto em Native!{"\n"}
-      </Text>
-      <Text style={textoEstilo}>
-        Indicação básica de um projeto em Native!{"\n"}
-      </Text>
-      <Text>{"\n"}</Text>
-      <Text>{"\n"}</Text>
-      <Button
-        title="Aperte"
-        color={"#e453f0"}
-        style={styles.botao}
-        onPress={toggleTema}
-      />
-      <StatusBar style="auto" />
-    </View>
+        <Text>{"\n"}</Text>
+        <Text style={textoEstilo}>Bem vindo ao meu telefone!{"\n"}</Text>
+        <Text>{"\n"}</Text>
+        <Image
+          source={{
+            uri: "https://static1.cbrimages.com/wordpress/wp-content/uploads/2024/06/what-no-face-in-spirited-away-represents-explained-feature.jpg",
+          }}
+          style={{
+            height: 500,
+            width: 350,
+          }}
+        />
+
+        <Text>{"\n"}</Text>
+        <Image
+          source={require("./Imagens/Lucy.png")}
+          style={{
+            height: 500,
+            width: 350,
+          }}
+        />
+
+        <Text>{"\n"}</Text>
+        <Text style={textoEstilo}>
+          Indicação básica de um projeto em Native!{"\n"}
+        </Text>
+        <Text>{"\n"}</Text>
+
+        <StatusBar style="auto" />
+      </View>
+    </ScrollView>
   );
 }
 
@@ -74,6 +78,7 @@ const styles = StyleSheet.create({
   },
   texto: {
     color: "#fff",
+    fontSize: 18,
   },
   containerBranco: {
     backgroundColor: "#fff",
@@ -82,6 +87,12 @@ const styles = StyleSheet.create({
     color: "#000",
   },
   botao: {
-    borderRadius: 5,
+    marginTop: 20,
+    padding: 10,
+    borderRadius: 50,
+    backgroundColor: "#007BFF",
+  },
+  botaoBranco: {
+    backgroundColor: "#28A745",
   },
 });
