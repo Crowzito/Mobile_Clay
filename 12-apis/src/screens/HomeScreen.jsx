@@ -1,0 +1,43 @@
+import { FlatList, ScrollView, StyleSheet, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Avatar, Button, Card, IconButton, Text } from "react-native-paper";
+import axios from "axios";
+
+export default function HomeScreen({ navigation, route }) {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://dummyjson.com/users")
+      .then((resposta) => {
+        console.log(resposta.data.users);
+        setUsers(resposta.data.users);
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
+  }, []);
+
+  return (
+    <FlatList
+      style={{ marginBottom: 50 }}
+      data={users}
+      renderItem={({ item }) => (
+        <Card
+          style={{ margin: 5 }}
+          onPress={() => navigation.navigate("UsuarioScreen",  item.id)}
+        >
+          <Card.Title
+            title={`${item.firstName} ${item.lastName}`}
+            subtitle={item.email}
+            left={(props) => (
+              <Avatar.Image {...props} source={{ uri: item.image }} />
+            )}
+            right={() => <IconButton icon="chevron-right" size={30} />}
+          />
+        </Card>
+      )}
+      keyExtractor={users.id}
+    />
+  );
+}
