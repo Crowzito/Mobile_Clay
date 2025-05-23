@@ -5,7 +5,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
 
 import HomeScreen from "../screens/HomeScreen";
-import UsuarioScreen from "../screens/UsuarioScreen";
+import ListaProdutosScreen from "../screens/ListaProdutosScreen";
+import ProdutoScreen from "../screens/ProdutoScreen";
 
 export default function StackRoutes() {
   return (
@@ -13,17 +14,17 @@ export default function StackRoutes() {
       <Stack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{ title: "Lista de Usuários", headerTitleAlign: "center" }}
+        options={{ title: "Categorias", headerTitleAlign: "center" }}
       />
       <Stack.Screen
-        name="UsuarioScreen"
-        component={UsuarioScreen}
-        options={{ title: "Usuário", headerTitleAlign: "center" }}
+        name="ListaProdutosScreen"
+        component={ListaProdutosScreen}
+        options={{ title: "Lista de Produtos", headerTitleAlign: "center" }}
       />
       <Stack.Screen
-        name="UsuarioScreen"
-        component={UsuarioScreen}
-        options={{ title: "Usuário", headerTitleAlign: "center" }}
+        name="ProdutoScreen"
+        component={ProdutoScreen}
+        options={{ title: "Produto", headerTitleAlign: "center" }}
       />
     </Stack.Navigator>
   );
