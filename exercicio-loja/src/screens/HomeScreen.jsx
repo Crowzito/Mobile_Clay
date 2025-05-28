@@ -13,14 +13,14 @@ import {
 import axios from "axios";
 
 export default function HomeScreen({ navigation, route }) {
-  const [users, setUsers] = useState([]);
+  const [categoria, setCategoria] = useState([]);
 
   useEffect(() => {
     axios
-      .get("https://dummyjson.com/users?delay=5000")
+      .get("https://dummyjson.com/products/category-list?delay=3000")
       .then((resposta) => {
-        console.log(resposta.data.users);
-        setUsers(resposta.data.users);
+        console.log(resposta.data);
+        setCategoria(resposta.data);
       })
       .catch((erro) => {
         console.log(erro);
@@ -30,18 +30,14 @@ export default function HomeScreen({ navigation, route }) {
   return (
     <FlatList
       style={{ marginBottom: 50 }}
-      data={users}
+      data={categoria}
       renderItem={({ item }) => (
         <Card
           style={{ margin: 5 }}
-          onPress={() => navigation.navigate("UsuarioScreen", item.id)}
+          onPress={() => navigation.navigate("ListaProdutosScreen", item)}
         >
           <Card.Title
-            title={`${item.firstName} ${item.lastName}`}
-            subtitle={item.email}
-            left={(props) => (
-              <Avatar.Image {...props} source={{ uri: item.image }} />
-            )}
+            title={`${item}`}
             right={() => <IconButton icon="chevron-right" size={30} />}
           />
         </Card>
@@ -58,7 +54,6 @@ export default function HomeScreen({ navigation, route }) {
           </Text>
         </View>
       )}
-      keyExtractor={users.id}
     />
   );
 }
